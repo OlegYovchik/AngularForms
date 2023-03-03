@@ -1,0 +1,11 @@
+<div class="btn-group w-100 mb-5" dropdown [isDisabled]="isDisabled" >
+  <button id="button-basic" dropdownToggle type="button" class="btn dropdown-toggle"
+          aria-controls="dropdown-basic" [ngClass]="isDisabled ? 'btn-danger' : 'btn-success'" #btnSelect>
+    {{viewValue ? viewValue : placeholder}} <span class="caret"></span>
+  </button>
+  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-basic" [style.width]="'100%'">
+    <li role="menuitem" *ngFor="let item of options" (click)="select(item)" class="pointer">{{item.label}}</li>
+  </ul>
+</div>
+

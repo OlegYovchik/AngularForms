@@ -1,0 +1,4 @@
+<div [formGroup]="form" class="form-group p-2 d-flex flex-column w-100">
+  <app-select [options]="options" formControlName="selectName"></app-select>
+  <button type="button" class="btn btn-success" (click)="fetchData()">Fetch Data</button>
+</div>
