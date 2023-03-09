@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, forwardRef, Input, TemplateRef} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {Option} from "../forms/forms.component";
 
@@ -15,10 +15,12 @@ export type OptionsValue = '';
 
 })
 export class SelectComponent implements ControlValueAccessor {
-  @Input()options!: Option [];
-  public placeholder = 'Chose auto';
+  @Input()options: Option [] | null = null;
+
+  @Input()optionTemplate?: TemplateRef<unknown>
+  @Input() public placeholder = '';
   public viewValue: string | undefined;
-  public some!: string;
+  //public some!: string;
   private onChange!: (value: string)=>void;
   private onTouched!: ()=>void;
   public isDisabled = false;
@@ -28,9 +30,10 @@ export class SelectComponent implements ControlValueAccessor {
     this.onChange(item.value);
     this.viewValue = item.label;
   }
+
   writeValue(value: string): void{
-    this.viewValue = this.options.find((item)=>item.value===value)?.label;
-    //console.log(value)
+    this.viewValue = this.options?.find((item)=>{item.value===value
+    })?.label;
   }
 
   registerOnChange(fn:(value: string)=>void):void{

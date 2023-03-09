@@ -1,4 +1,21 @@
 <div [formGroup]="form" class="form-group p-2 d-flex flex-column w-100">
-  <app-select [options]="options" formControlName="selectName"></app-select>
+  <app-select [options]="options" formControlName="car" placeholder="Chose car"></app-select>
+  <app-select [options]="users$ | async" formControlName="userId" [optionTemplate]="user" placeholder="User">
+    <ng-template #user let-item="item">
+        <div class="header-drop">{{item.entity.first_name}}</div>
+        <div class="content-drop">{{item.entity.last_name}}</div>
+        <div class="footer-drop">{{item.entity.email}}</div>
+    </ng-template>
+  </app-select>
+  <app-multi-select [options]="users$ | async" formControlName="userMulti" [optionTemplate]="user" placeholder="User">
+    <ng-template #user let-item="item">
+        <div class="header-drop">{{item.entity.first_name}}</div>
+        <div class="content-drop">{{item.entity.last_name}}</div>
+        <div class="footer-drop">{{item.entity.email}}</div>
+    </ng-template>
+  </app-multi-select>
+  <div class="options p-2 d-flex justify-content-center">
+      <app-checkbox-group [optionsCar]="optionsCar" formControlName="checkCar"></app-checkbox-group>
+  </div>
   <button type="button" class="btn btn-success" (click)="fetchData()">Fetch Data</button>
 </div>

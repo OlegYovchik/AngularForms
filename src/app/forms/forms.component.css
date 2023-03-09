@@ -1,0 +1,16 @@
+.header-drop{
+    font-size: 14px;
+    padding-left: 4px;
+}
+.content-drop{
+    font-size: 11px;
+    padding-left: 4px;
+}
+.footer-drop{
+    font-size: 10px;
+    padding-left: 4px;
+    border-bottom: 1px solid grey;
+}
+input[type=checkbox]{
+    margin-right: 20px;
+}

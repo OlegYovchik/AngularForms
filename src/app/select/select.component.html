@@ -5,7 +5,12 @@
   </button>
   <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
       role="menu" aria-labelledby="button-basic" [style.width]="'100%'">
-    <li role="menuitem" *ngFor="let item of options" (click)="select(item)" class="pointer">{{item.label}}</li>
+    <li role="menuitem" *ngFor="let item of options" (click)="select(item)" class="pointer">
+      <span *ngTemplateOutlet="item.entity&&optionTemplate ? optionTemplate : label ; context: {item:item}"></span>
+    </li>
   </ul>
 </div>
+<ng-template #label let-item="item">
+  <div class="header">{{item.label}}</div>
+</ng-template>
 

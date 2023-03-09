@@ -9,4 +9,8 @@ import {AppApiService} from "./app-api.service";
 export class AppComponent {
   title = 'Alega';
   constructor(private apiService: AppApiService){}
+
+  ngOnInit(){
+    
+  }
 }

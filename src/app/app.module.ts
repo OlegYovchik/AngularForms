@@ -9,12 +9,16 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SelectComponent,
-    FormsComponent
+    FormsComponent,
+    CheckboxGroupComponent,
+    MultiSelectComponent
   ],
   imports: [
     BrowserModule,

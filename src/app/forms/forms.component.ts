@@ -1,11 +1,16 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppApiService } from "../app-api.service";
+import { Users } from "../app.model";
+import { map } from "rxjs";
 
-export type Option = {
+export type Option <T=unknown> = {
   label: string
   value: string
+  entity?: T
 }
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -13,31 +18,46 @@ export type Option = {
 })
 export class FormsComponent implements OnInit {
   public form!: FormGroup
-
+  public users: Option<Users>[] = []
   public options: Option[] = [
     {label: 'BMW', value: '123'},
     {label: 'Alfa-Romeo', value: '124'},
     {label: 'Opel', value: '125'}
   ]
-  constructor( private http: HttpClient) { }
+  public optionsCar = ['hatch', 'acc', 'matrix']
+
+  public users$ = this.api.getUsers().pipe(
+      map(users=>
+        users.map(item => ({
+          label: item.first_name,
+          value: item.id,
+          entity: item
+        }))
+      )
+  )
+
+  constructor( private http: HttpClient, private api: AppApiService) { }
+
   ngOnInit() {
     this.form = new FormGroup({
-      selectName: new FormControl(this.options[2].value, Validators.required)
+      car: new FormControl(null, Validators.required),
+      userId: new FormControl(null, Validators.required),
+      userMulti: new FormControl(null, Validators.required),
+      checkCar: new FormControl(['acc'], Validators.required)
     })
-    setTimeout(()=>this.form.get('selectName')?.setValue(this.options[0].value),1500);
-    setTimeout(()=>this.form.get('selectName')?.disable(),1500);
-    setTimeout(()=>this.form.get('selectName')?.enable(),3000);
-    //testing CodeWar
-    // @ts-ignore
-    function minValue(values){
-      return values.sort().filter((item: number, i: number)=>item!==values[i+1])
+    
+    this.api.getUsers().subscribe((res)=>{
+      this.users = res.map(item=>({
+        label:"",
+        value: item.id,
+        entity: item
+      }))
     }
-    console.log(minValue([1,9,6,4,8,3,6,1]));
+  )
+    this.form.valueChanges.subscribe(console.log)
   }
+
   fetchData(){
-    let params = new HttpParams();
-    params = params.append('limit', '5');
-    this.http.get<any>('https://dummyjson.com/products',{params})
-      .subscribe()
+    console.log(this.form.value)
   }
 }
