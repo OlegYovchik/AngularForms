@@ -9,6 +9,7 @@ export type Option <T=unknown> = {
   label: string
   value: string
   entity?: T
+  checked?: boolean
 }
 
 @Component({
