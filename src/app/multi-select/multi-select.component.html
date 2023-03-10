@@ -1,0 +1,26 @@
+<div class="btn-group w-100 mt-2" dropdown [autoClose]="false" [isDisabled]="isDisabled" >
+    <button id="button-basic"
+            dropdownToggle
+            type="button"
+            class="btn dropdown-toggle"
+            aria-controls="dropdown-basic"
+            [ngClass]="isDisabled ? 'btn-danger' : 'btn-success'"
+            #btnSelect
+    >{{placeholder}}
+        <span class="caret"></span>
+    </button>
+    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+        role="menu" aria-labelledby="button-basic" [style.width]="'100%'">
+        <li class="pointer" (click)="checkAll()">
+            <input type="checkbox" class="form-check-input" name="All" >All
+        </li>
+        <li role="menuitem" *ngFor="let item of options" (mousedown)="select(item)" class="pointer">
+            <input type="checkbox" [checked]="item.checked">{{item.label}}
+        </li>
+    </ul>
+</div>
+<span  class="usersBox d-flex float-start">
+    <div class="users m-1 d-flex align-items-center" *ngFor="let user of arrayUsersOut">
+        {{user.label}}<button type="button" class="btn h-1" (click)="delete(user)">&times;</button>
+    </div>
+</span>
