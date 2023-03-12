@@ -31,13 +31,12 @@ export class MultiSelectComponent implements ControlValueAccessor{
       this.arrayUsersOut?.delete(value);
     }
     this.onChange([...this.arrayUsersOut]);
-    console.log(this.options)
   }
   delete(user: Option){
     this.arrayUsersOut.delete(user);
-    if(this.options?.find(item=>item === user))
+    let item = this.options?.find(item=>item === user);
+    delete item?.checked;
     this.onChange([...this.arrayUsersOut])
-    console.log(this.options)
   }
   checkAll(){
     this.options?.forEach(item=>this.arrayUsersOut.add(item));

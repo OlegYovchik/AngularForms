@@ -11,6 +11,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
+import {AppRoutingModule} from "./app-routing.module";
+import { HomeComponent } from './home/home.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
     SelectComponent,
     FormsComponent,
     CheckboxGroupComponent,
-    MultiSelectComponent
+    MultiSelectComponent,
+    HomeComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,8 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
     BsDropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

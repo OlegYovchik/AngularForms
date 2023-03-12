@@ -2,3 +2,7 @@
   cursor: pointer;
   background-color: #5598ff;
 }
+.dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+}

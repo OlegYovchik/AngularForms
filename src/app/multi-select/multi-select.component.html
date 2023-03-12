@@ -12,10 +12,10 @@
     <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
         role="menu" aria-labelledby="button-basic" [style.width]="'100%'">
         <li class="pointer" (click)="checkAll()">
-            <input type="checkbox" class="form-check-input" name="All" >All
+            <input type="checkbox" class="form-check-input" name="All" [checked]="checkedAll">All
         </li>
         <li role="menuitem" *ngFor="let item of options" (mousedown)="select(item)" class="pointer">
-            <input type="checkbox" [checked]="item.checked">{{item.label}}
+            <input type="checkbox" class="form-check-input" [checked]="item.checked">{{item.label}}
         </li>
     </ul>
 </div>

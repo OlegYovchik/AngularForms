@@ -5,3 +5,7 @@
     border: 1px solid black;
     border-radius: 5px;
 }
+.dropdown-menu {
+    max-height: 280px;
+    overflow-y: auto;
+}

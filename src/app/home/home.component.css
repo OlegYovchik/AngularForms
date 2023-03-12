@@ -1,0 +1,18 @@
+.main{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/assets/img/image1.jpg");
+    opacity: 80%;
+}
+.content{
+    font-size: 6rem;
+    font-weight: 700;
+    color: white;
+    font-family: 'Radjhani', sans-serif;
+    background: repeating-linear-gradient(#ffffff, #ffffff 2px, transparent 4px, transparent 4px);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

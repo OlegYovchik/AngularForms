@@ -1,0 +1,13 @@
+.nav-bar{
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+a{
+    text-decoration: none;
+    font-weight: 600;
+    color: #c2bdbd;
+}
+.active{
+    color: black;
+}
