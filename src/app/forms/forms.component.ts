@@ -44,7 +44,7 @@ export class FormsComponent implements OnInit {
       car: new FormControl(null, Validators.required),
       userId: new FormControl(null, Validators.required),
       userMulti: new FormControl(null, Validators.required),
-      checkCar: new FormControl(['acc'], Validators.required)
+      checkCar: new FormControl(['acc','matrix'], Validators.required)
     })
     
     this.api.getUsers().subscribe((res)=>{

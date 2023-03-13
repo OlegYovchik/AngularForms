@@ -1,0 +1,6 @@
+<div class="checkbox-group d-flex">
+    <div class="checkbox d-flex flex-column m-2" *ngFor="let item of optionsCar; let i = index">
+        <label [for]="item">{{item | uppercase}}</label>
+        <input type="checkbox" [id]="item" [value]="item" (click)="check(item)" [checked]="valueOptions.includes(item)">
+    </div>
+</div>
