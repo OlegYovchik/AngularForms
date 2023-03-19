@@ -29,7 +29,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor{
   }
   writeValue(value: string){
     this.valueOptions = this.valueOptions.concat(value);
-    console.log(this.valueOptions)
   }
   registerOnChange(fn: any){
     this.onChange = fn;

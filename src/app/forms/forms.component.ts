@@ -25,7 +25,7 @@ export class FormsComponent implements OnInit {
     {label: 'Alfa-Romeo', value: '124'},
     {label: 'Opel', value: '125'}
   ]
-  public optionsCar = ['hatch', 'acc', 'matrix']
+  public optionsCar = ['hatch', 'acc', 'matrix', 'navi']
 
   public users$ = this.api.getUsers().pipe(
       map(users=>

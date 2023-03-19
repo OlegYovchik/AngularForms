@@ -14,6 +14,8 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     CheckboxGroupComponent,
     MultiSelectComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    ContactsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

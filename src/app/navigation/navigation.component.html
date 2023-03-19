@@ -3,5 +3,9 @@
         <a routerLink="/home" routerLinkActive="active">HOME</a>
         <a routerLink="/form" routerLinkActive="active">ORDER</a>
         <a routerLink="/contacts" routerLinkActive="active">CONTACTS</a>
+        <a routerLink="/auth" routerLinkActive="active" *ngIf="!status; else logout">LOGIN</a>
+        <ng-template #logout>
+            <a (click)="unloging()">LOGOUT</a>
+        </ng-template>
     </div>
 </div>
