@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {AuthService} from "../auth.service";
 
 @Component({
@@ -8,12 +9,13 @@ import {AuthService} from "../auth.service";
 })
 export class NavigationComponent implements OnInit{
   @Input() status: boolean | undefined;
-  constructor(private authService: AuthService){
+  constructor(public authService: AuthService, private router: Router){
   }
-  ngOnInit(){
-    console.log(this.authService.status);
-  }
-  unloging(){
 
+  ngOnInit(): void {
+  }
+  
+  unloging(){
+    this.authService.isAuthorized$.next(false)
   }
 }

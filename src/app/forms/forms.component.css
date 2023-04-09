@@ -1,17 +1,9 @@
-.main{
-    position: fixed;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("/assets/img/image2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 80%;
-}
+
 .form-group{
-    background-color: #f0f3f6;
-    opacity: 80%;
+    height: 100vh;
+    background-image: url('../../assets/img/image2.jpg');
+    background-size: cover;
+    opacity: 70%;
 }
 .header-drop{
     font-size: 14px;
@@ -29,4 +21,7 @@
 
 input[type=checkbox]{
     margin-right: 20px;
+}
+.hover{
+    background-color: #888888;
 }

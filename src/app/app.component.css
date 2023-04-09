@@ -290,3 +290,7 @@ svg#clouds {
         visibility: hidden;
     }
 }
+
+app-forms{
+    background-image: url('../assets/img/image2.jpg')
+}

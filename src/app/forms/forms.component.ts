@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppApiService } from "../app-api.service";
 import { Users } from "../app.model";
 import { map } from "rxjs";
@@ -18,6 +18,13 @@ export type Option <T=unknown> = {
   styleUrls: ['./forms.component.css'],
 })
 export class FormsComponent implements OnInit {
+  public values = [
+    {id: 1, name: 'hetchback'},
+    {id: 2, name: 'liftback'},
+    {id: 3, name: 'crossover'},
+    {id: 4, name: 'sedan'},
+    {id: 5, name: 'multivan'},
+  ]
   public form!: FormGroup
   public users: Option<Users>[] = []
   public options: Option[] = [
@@ -44,7 +51,8 @@ export class FormsComponent implements OnInit {
       car: new FormControl(null, Validators.required),
       userId: new FormControl(null, Validators.required),
       userMulti: new FormControl(null, Validators.required),
-      checkCar: new FormControl(['acc','matrix'], Validators.required)
+      checkCar: new FormControl(['acc','matrix'], Validators.required),
+      newVersion: new FormControl(2, Validators.required)
     })
     
     this.api.getUsers().subscribe((res)=>{

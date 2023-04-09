@@ -16,6 +16,10 @@ import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AuthComponent } from './auth/auth.component';
+import { SelectByComponent } from './select-by/select-by.component';
+import { OptionComponent } from './option/option.component';
+import { AppTrimDirective } from './app-trim.directive';
+import { ShowBlockDirective } from './show-block.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { AuthComponent } from './auth/auth.component';
     HomeComponent,
     NavigationComponent,
     ContactsComponent,
-    AuthComponent
+    AuthComponent,
+    SelectByComponent,
+    OptionComponent,
+    AppTrimDirective,
+    ShowBlockDirective
   ],
   imports: [
     BrowserModule,

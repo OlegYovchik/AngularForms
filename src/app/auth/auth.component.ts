@@ -31,12 +31,14 @@ export class AuthComponent implements OnInit{
       email: this.form?.value.email,
       password: this.form?.value.password
     }
-
+    console.log(userAuth);
     this.authService.login(userAuth).subscribe((res) => {
       if(res){
-        this.router.navigate(["/home"]);
-        this.authService.status=true;
+        this.router.navigate(['/home'])
       }
     })
+  }
+  show(event: HTMLInputElement){
+    this.form.value.email = event;
   }
 }

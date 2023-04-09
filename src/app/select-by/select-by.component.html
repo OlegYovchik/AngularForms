@@ -1,0 +1,10 @@
+<div class="w-100 mt-2" dropdown container="body">
+    <button dropdownToggle type="button" class="btn btn-primary w-100" #button
+    >
+        {{valueView ? valueView : placeholder}}
+    </button>
+    <div *dropdownMenu [style.width.px]="button.clientWidth" class="d-flex flex-column bg-white">
+        <ng-content></ng-content>
+    </div>
+</div>
+
