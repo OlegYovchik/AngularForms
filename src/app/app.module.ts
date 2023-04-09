@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -8,7 +8,7 @@ import {FormsComponent} from "./forms/forms.component";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -20,6 +20,20 @@ import { SelectByComponent } from './select-by/select-by.component';
 import { OptionComponent } from './option/option.component';
 import { AppTrimDirective } from './app-trim.directive';
 import { ShowBlockDirective } from './show-block.directive';
+import { AuthInterceptor } from './auth-interceptor.service';
+import { AdminToolsComponent } from './admin-tools/admin-tools.component';
+import { CustomInputComponent } from './custom-input/custom-input.component';
+import { TableComponent } from './table/table.component';
+import { ConfigService } from './config.service';
+import { ModalViewComponent } from './modal-view/modal-view.component';
+
+const INTERCEPTOR_PROVIDER = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi: true
+}
+
+export function loadConfig(config: ConfigService){return () => config.load()};
 
 @NgModule({
   declarations: [
@@ -35,7 +49,11 @@ import { ShowBlockDirective } from './show-block.directive';
     SelectByComponent,
     OptionComponent,
     AppTrimDirective,
-    ShowBlockDirective
+    ShowBlockDirective,
+    AdminToolsComponent,
+    CustomInputComponent,
+    TableComponent,
+    ModalViewComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +65,14 @@ import { ShowBlockDirective } from './show-block.directive';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: APP_INITIALIZER,
+      useFactory: loadConfig,
+      deps: [ConfigService], 
+      multi: true 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

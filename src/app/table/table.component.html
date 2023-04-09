@@ -1,0 +1,14 @@
+<h5 class="text-center">Table of Orders</h5>
+<app-modal-view [posX]="posX" [posY]="posY" *ngIf="showModal"></app-modal-view>
+<table class="table text-center table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th *ngFor="let column of columns" [style.width]="column.width" scope="row">{{column.name}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of data" >
+            <td *ngFor="let item of columns">{{item.prop ? getValue(row, item.prop) : null}}</td>
+        <tr>
+    </tbody>
+</table>

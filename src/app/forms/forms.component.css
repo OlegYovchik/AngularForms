@@ -25,3 +25,8 @@ input[type=checkbox]{
 .hover{
     background-color: #888888;
 }
+.info{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}

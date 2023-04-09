@@ -1,25 +1,25 @@
-    <div [formGroup]="form" class="form-group justify-content-center d-flex flex-column">
-        <div class="main d-flex flex-column  col-6 offset-3">
-            <div class="form-controls card p-2" *ngShowBlock="'forms'">
-                <app-select [options]="options" formControlName="car" placeholder="Choose car"></app-select>
-                <app-select [options]="users$ | async" formControlName="userId" [optionTemplate]="user" placeholder="User">
-                    <ng-template #user let-item="item">
-                        <div class="header-drop">{{item.entity.first_name}}</div>
-                        <div class="content-drop">{{item.entity.last_name}}</div>
-                        <div class="footer-drop">{{item.entity.email}}</div>
-                    </ng-template>
-                </app-select>
-                <app-multi-select [options]="users$ | async" formControlName="userMulti" placeholder="User">
-                </app-multi-select>
-                <div class="options p-2 d-flex justify-content-center">
-                    <app-checkbox-group [optionsCar]="optionsCar" formControlName="checkCar"></app-checkbox-group>
-                </div>
-                <button type="button" class="btn btn-success" (click)="fetchData()">Fetch Data</button>
-                <app-select-by formControlName = "newVersion" [placeholder]="'select smth'">
-                    <app-option *ngFor="let value of values" [value]="value.id">
-                        {{ value.name }}
-                    </app-option>
-                </app-select-by>
+<div [formGroup]="form" class="form-group justify-content-center d-flex flex-column">
+    <div class="main d-flex flex-column  col-6 offset-3">
+        <div class="form-controls card p-2" *ngShowBlock="'forms'" #forms>
+            <app-select [options]="options" formControlName="car" placeholder="Choose car"></app-select>
+            <app-select [options]="users" formControlName="userId" [optionTemplate]="user" placeholder="User">
+                <ng-template #user let-item="item">
+                    <div class="header-drop">{{item.entity.first_name}}</div>
+                    <div class="content-drop">{{item.entity.last_name}}</div>
+                    <div class="footer-drop">{{item.entity.email}}</div>
+                </ng-template>
+            </app-select>
+            <app-multi-select [options]="users" formControlName="userMulti" placeholder="User">
+            </app-multi-select>
+            <div class="options p-2 d-flex justify-content-center">
+                <app-checkbox-group [optionsCar]="optionsCar" formControlName="checkCar"></app-checkbox-group>
             </div>
+            <button type="button" class="btn btn-success" (click)="fetchData()">Fetch Data</button>
+            <app-select-by formControlName = "newVersion" [placeholder]="'Type body'">
+                <app-option *ngFor="let value of values" [value]="value.id">
+                    {{ value.name }}
+                </app-option>
+            </app-select-by>
         </div>
     </div>
+</div>

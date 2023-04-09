@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
-import { Users } from "./app.model";
+import { User } from "./app.model";
 import { users } from "./app.mock";
 
 @Injectable({
@@ -9,7 +9,7 @@ import { users } from "./app.mock";
 export class AppApiService {
   constructor() { }
 
-  public getUsers():Observable<Users[]>{
+  public getUsers():Observable<User[]>{
     return of(users)
   }
 }

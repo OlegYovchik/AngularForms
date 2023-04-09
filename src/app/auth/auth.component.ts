@@ -31,9 +31,8 @@ export class AuthComponent implements OnInit{
       email: this.form?.value.email,
       password: this.form?.value.password
     }
-    console.log(userAuth);
     this.authService.login(userAuth).subscribe((res) => {
-      if(res){
+      if(res.registered){
         this.router.navigate(['/home'])
       }
     })

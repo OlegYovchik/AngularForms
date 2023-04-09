@@ -1,7 +1,7 @@
-import { Component, forwardRef, Input, TemplateRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Users } from '../app.model';
-import { Option } from '../forms/forms.component';
+import { User } from '../app.model';
+import { Option } from '../app.model';
 
 @Component({
   selector: 'app-multi-select',
@@ -14,7 +14,7 @@ import { Option } from '../forms/forms.component';
   }]
 })
 export class MultiSelectComponent implements ControlValueAccessor{
-  @Input()options: Option<Users>[] | null = null;
+  @Input()options: Option<User>[] | null = null;
   public checkedAll = false;
   public isDisabled = false;
   public placeholder = 'Choose Users';
@@ -29,6 +29,7 @@ export class MultiSelectComponent implements ControlValueAccessor{
     }else{
       value.checked = false;
       this.arrayUsersOut?.delete(value);
+      this.checkedAll = false;
     }
     this.onChange([...this.arrayUsersOut]);
   }

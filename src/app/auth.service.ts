@@ -11,8 +11,7 @@ export type User = {
   providedIn: 'root'
 })
 export class AuthService {
-  public status = false;
-  public isAuthorized$ = new BehaviorSubject<boolean>(false)
+  public isAuthorized$ = new BehaviorSubject<boolean>(true)
   constructor( private http: HttpClient) { }
   login(user: User){
     return this.http.post<Responce>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBJKAs-0fQF_B_NYRZQFHp1EgCIUOOWjpY`,user)

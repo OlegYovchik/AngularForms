@@ -1,16 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppApiService } from "../app-api.service";
-import { Users } from "../app.model";
-import { map } from "rxjs";
-
-export type Option <T=unknown> = {
-  label: string
-  value: string
-  entity?: T
-  checked?: boolean
-}
+import { User, Option } from "../app.model";
+import { of } from "rxjs";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-forms',
@@ -18,33 +10,13 @@ export type Option <T=unknown> = {
   styleUrls: ['./forms.component.css'],
 })
 export class FormsComponent implements OnInit {
-  public values = [
-    {id: 1, name: 'hetchback'},
-    {id: 2, name: 'liftback'},
-    {id: 3, name: 'crossover'},
-    {id: 4, name: 'sedan'},
-    {id: 5, name: 'multivan'},
-  ]
-  public form!: FormGroup
-  public users: Option<Users>[] = []
-  public options: Option[] = [
-    {label: 'BMW', value: '123'},
-    {label: 'Alfa-Romeo', value: '124'},
-    {label: 'Opel', value: '125'}
-  ]
-  public optionsCar = ['hatch', 'acc', 'matrix', 'navi']
+  public values: Option[] = [];
+  public form!: FormGroup;
+  public users: Option<User>[] = [];
+  public options: Option[] = [];
+  public optionsCar = ['hatch', 'acc', 'matrix', 'navi'];
 
-  public users$ = this.api.getUsers().pipe(
-      map(users=>
-        users.map(item => ({
-          label: item.first_name,
-          value: item.id,
-          entity: item
-        }))
-      )
-  )
-
-  constructor( private http: HttpClient, private api: AppApiService) { }
+  constructor( public authService: AuthService ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -52,20 +24,41 @@ export class FormsComponent implements OnInit {
       userId: new FormControl(null, Validators.required),
       userMulti: new FormControl(null, Validators.required),
       checkCar: new FormControl(['acc','matrix'], Validators.required),
-      newVersion: new FormControl(2, Validators.required)
+      newVersion: new FormControl('', Validators.required)
     })
-    
-    this.api.getUsers().subscribe((res)=>{
-      this.users = res.map(item=>({
-        label:"",
-        value: item.id,
-        entity: item
-      }))
-    }
-  )
-    this.form.valueChanges.subscribe(console.log)
-  }
 
+    let arrBodies = localStorage.getItem('bodies');
+    if(arrBodies){
+      of(JSON.parse(arrBodies)).subscribe((res)=>{
+        this.values = res.map((item:any)=>({
+          name: item.name,
+          id: Math.round(Math.random()*1000)
+        }))
+      })
+    }
+
+    let arrUser = localStorage.getItem('users');
+    if(arrUser){
+      of(JSON.parse(arrUser)).subscribe((res)=>{
+        this.users = res.map((item:any)=>({
+          label:item.first_name,
+          value: item.id,
+          entity: item
+        }))
+      })
+    }
+
+    let arrCar = localStorage.getItem('cars');
+    if(arrCar){
+      of(JSON.parse(arrCar)).subscribe((res)=>{
+        this.options = res.map((item:any)=>({
+          label: item.name.toUpperCase(),
+          value: Math.round(Math.random()*1000)
+        }))
+      })
+    }
+  }
+  
   fetchData(){
     console.log(this.form.value)
   }

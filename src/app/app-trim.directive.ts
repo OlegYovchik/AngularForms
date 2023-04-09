@@ -4,7 +4,7 @@ import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
   selector: '[appTrim]'
 })
 export class AppTrimDirective {
-  public text: any;
+  public text = '';
 
   constructor(){}
 

@@ -1,0 +1,3 @@
+<label [for]="inputName">{{inputName | uppercase}}</label>
+<input type="text" class="form-control" [id]="inputName" [value]="valueInp" (keyup)="onInput($event)" (blur)="fetchData()">
+<span class="error" *ngIf="error">Sorry this item "{{error}}" already exists!</span>

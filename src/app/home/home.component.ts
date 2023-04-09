@@ -6,10 +6,13 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+
   public title = "rent a car";
+
   constructor(){}
 
   ngOnInit(): void {
+    
     {
       // function palindrom(inp: string){
       //   let text = inp.toLowerCase();
@@ -43,59 +46,76 @@ export class HomeComponent implements OnInit{
       // }
       // findVowers('pathfinder');
       //=======================================================================
-      function fibonacci(num: number){
-        let arrFibonacci = [0,1]
-        for(let i = 2; i < num; i++){
-          arrFibonacci.push(arrFibonacci[i-2] + arrFibonacci[i-1]);
-        }
-        console.log(arrFibonacci);
-      }
-      fibonacci(10);
+      // function fibonacci(num: number){
+      //   let arrFibonacci = [0,1]
+      //   for(let i = 2; i < num; i++){
+      //     arrFibonacci.push(arrFibonacci[i-2] + arrFibonacci[i-1]);
+      //   }
+      //   console.log(arrFibonacci);
+      // }
+      // fibonacci(10);
       //============================================================================
-      const dayStart = "07:30";
-      const dayEnd = "17:45";
-      function scheduleMeeting(startTime: any,durationMinutes: any) {
-        let addDateStart = Date.parse("1970-01-01T" + dayStart);
-        let addDateEnd = Date.parse("1970-01-01T" + dayEnd);
-        let timeMeetingStart = Date.parse("1970-01-01T" + startTime);
-        let timeMeetingEnd = Date.parse("1970-01-01T" + startTime) + durationMinutes * 1000 * 60;
-        if(timeMeetingStart >= addDateStart && timeMeetingEnd <= addDateEnd){
-          console.log(true)
-        }else{
-          console.log(false)
-        }
-      }
-      scheduleMeeting('17:16',30);
+      // const dayStart = "07:30";
+      // const dayEnd = "17:45";
+      // function scheduleMeeting(startTime: any,durationMinutes: any) {
+      //   let addDateStart = Date.parse("1970-01-01T" + dayStart);
+      //   let addDateEnd = Date.parse("1970-01-01T" + dayEnd);
+      //   let timeMeetingStart = Date.parse("1970-01-01T" + startTime);
+      //   let timeMeetingEnd = Date.parse("1970-01-01T" + startTime) + durationMinutes * 1000 * 60;
+      //   if(timeMeetingStart >= addDateStart && timeMeetingEnd <= addDateEnd){
+      //     console.log(true)
+      //   }else{
+      //     console.log(false)
+      //   }
+      // }
+      // scheduleMeeting('17:16',30);
       //===================================================================================
-      function range(start: number, end?: number){
-        let arr = [];
-        if(end===0){
-          return;
-        }else if(start === end){
-          arr.push(start)
-        }else{
-          if(end)
-          for(let i = start; i <= end; i++){
-            arr.push(i);
-          }
-        }
-        console.log(arr);
-      }
-      range(3,0);
+      // function range(start: number, end?: number){
+      //   let arr = [];
+      //   if(end===0){
+      //     return;
+      //   }else if(start === end){
+      //     arr.push(start)
+      //   }else{
+      //     if(end)
+      //     for(let i = start; i <= end; i++){
+      //       arr.push(i);
+      //     }
+      //   }
+      //   console.log(arr);
+      // }
+      // range(3,0);
       //====================================================================================
-      var i = function(a:number, b: number){
-        console.log(...arguments)
-      }
-      i(9,12);
+      // var i = function(a:number, b: number){
+      //   console.log(...arguments)
+      // }
+      // i(9,12);
       //=====================================================================================
-      class Car {
-        engine = 'disel'
-        vheels = 4
+    //   class Car {
+    //     engine = 'disel'
+    //     vheels = 4
+    //   }
+    //   class Moto extends Car{
+    //     override vheels = 2
+    //   }
+    //   console.log(Car)
+    // }
+    //==================================================================================
+    let arr = [];
+    let words = 'Hello my dear friends! How are you?';
+    let word = '';
+    for(let i=0;i<=words.length;i++){
+      if(words[i]==' '){
+        arr.push(word);
+        word = '';
+      }else if(i===words.length){
+        arr.push(word)
+      }else{
+        word += words[i];
       }
-      class Moto extends Car{
-        override vheels = 2
-      }
-      console.log(Car)
+    }
+    let newArr = words.split(' ');
+    console.log(arr,newArr);
     }
   }
 }

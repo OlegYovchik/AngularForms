@@ -1,0 +1,10 @@
+<div [formGroup]="form" (ngSubmit)="fetch()" class="form-group d-flex flex-column justify-content-center">
+    <div class="controls card flex-column col-6 p-2">
+        <p class="text-center">CREATE ITEM FOR ORDERS</p>
+        <ng-container *ngFor="let item of toolsArray">
+            <custom-input [inputName]="item" [formControlName]="item"></custom-input>
+        </ng-container>
+        <button type="button" class="btn btn-success mt-3" (click)="fetch()">FETCH</button>
+    </div>
+    <app-table [columns]="columns" [data]="data"></app-table>
+</div>

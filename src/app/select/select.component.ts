@@ -1,6 +1,6 @@
 import {Component, forwardRef, Input, TemplateRef} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {Option} from "../forms/forms.component";
+import {Option} from "../app.model";
 
 export type OptionsValue = '';
 @Component({
@@ -20,7 +20,6 @@ export class SelectComponent implements ControlValueAccessor {
   @Input()optionTemplate?: TemplateRef<unknown>
   @Input() public placeholder = '';
   public viewValue: string | undefined;
-  //public some!: string;
   private onChange!: (value: string)=>void;
   private onTouched!: ()=>void;
   public isDisabled = false;

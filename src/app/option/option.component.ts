@@ -2,7 +2,6 @@ import {Component, ElementRef, EventEmitter, HostListener, Input, Output} from '
 
 @Component({
   selector: 'app-option',
-  styleUrls: ['./option.component.css'],
   template: `<ng-content></ng-content>`
 })
 export class OptionComponent<T>{
