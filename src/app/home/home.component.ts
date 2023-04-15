@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ContentChild, OnInit, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +8,13 @@ import {Component, OnInit} from '@angular/core';
 export class HomeComponent implements OnInit{
 
   public title = "rent a car";
-
+  @ContentChild('h')table?: TemplateRef<unknown>
   constructor(){}
-
+  ngAfterViewInit(){
+    console.log(this.table)
+  }
   ngOnInit(): void {
-    
+
     {
       // function palindrom(inp: string){
       //   let text = inp.toLowerCase();
@@ -91,31 +93,61 @@ export class HomeComponent implements OnInit{
       // }
       // i(9,12);
       //=====================================================================================
-    //   class Car {
-    //     engine = 'disel'
-    //     vheels = 4
-    //   }
-    //   class Moto extends Car{
-    //     override vheels = 2
-    //   }
-    //   console.log(Car)
-    // }
-    //==================================================================================
-    let arr = [];
-    let words = 'Hello my dear friends! How are you?';
-    let word = '';
-    for(let i=0;i<=words.length;i++){
-      if(words[i]==' '){
-        arr.push(word);
-        word = '';
-      }else if(i===words.length){
-        arr.push(word)
-      }else{
-        word += words[i];
+      //   class Car {
+      //     engine = 'disel'
+      //     vheels = 4
+      //   }
+      //   class Moto extends Car{
+      //     override vheels = 2
+      //   }
+      //   console.log(Car)
+      // }
+      //==================================================================================
+      // let arr = [];
+      // let words = 'Hello my dear friends! How are you?';
+      // let word = '';
+      // for(let i=0;i<=words.length;i++){
+      //   if(words[i]==' '){
+      //     arr.push(word);
+      //     word = '';
+      //   }else if(i===words.length){
+      //     arr.push(word)
+      //   }else{
+      //     word += words[i];
+      //   }
+      // }
+      // let newArr = words.split(' ');
+      // console.log(arr,newArr);
+      // let obj = [{
+      //   a: 45,
+      //   b: 34
+      // }]
+      // let obj1 = [...obj];
+      // console.log(obj===obj1)
+      //@ts-ignore
+      function rotate(str){
+        let newStr = str;
+        let str1 = '';
+        let str2 = '';
+        let arr = [];
+        for(let i = 0; i < newStr.length; i++){
+          str1 = newStr.slice(i+1, newStr.length);
+          str2 = newStr.slice(0,i+1);
+          arr.push(str1+str2);
+        }
+        console.log(arr);
+      }rotate("Hello");
+      //===========================================================
+      function compareNumbers(a:number, b:number) {
+        return a - b;
       }
-    }
-    let newArr = words.split(' ');
-    console.log(arr,newArr);
+
+      function sortByLength (array:string []) {
+          let numStr:number [] = [];
+          array.forEach(item=> numStr.push(item.length));
+          console.log(numStr)
+      }
+      sortByLength(['buenossss','hell','hello','privet']);
     }
   }
 }

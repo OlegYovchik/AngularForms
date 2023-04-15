@@ -1,32 +1,56 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Car, ColumnConfig, User } from '../app.model';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  Input,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
+import {ColumnConfig} from '../app.model';
+import {CustomCell, CustomCellDirective} from "../custom-cell.directive";
+import {CustomHeader, CustomRow} from "../table-model";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent <T extends Car> implements OnInit{
-  @Input() public columns: ColumnConfig<T>[] | undefined;
+export class TableComponent <T> implements AfterViewInit{
+  @Input() public columns?: ColumnConfig<T>[];
   @Input() public data: T[] | undefined;
+  @ViewChildren(CustomCellDirective,{read: CustomCell})
+    public customDefaultCells: QueryList<CustomCell> = new QueryList();
+  @ContentChildren(CustomCellDirective,{read: CustomCell})
+    public customCells: QueryList<CustomCell> = new QueryList();
 
-  public showModal = false;
-  public posX = '';
-  public posY = '';
+  public columnsDataModified?: any[];
+  public customHeaderCells = CustomHeader;
+  public customRowCells = CustomRow;
 
-  ngOnInit(){
-    console.log(this.columns, this.data);
+  ngAfterViewInit(){
+      this.columnsDataModified = this.columns?.map(item=>({
+        ...item,
+        headerTemplateRef: item.headerTemplate ? this.getHeaderTemplate(item.headerTemplate): this.getDefaultHeaderTemplate('defaultHeader'),
+        cellTemplateRef: item.cellTemplate ? this.getCellTemplate(item.cellTemplate) : this.getDefaultCellTemplate('defaultCell')
+      }))
   }
-
-  showImage(item: string, event: MouseEvent){
-    this.showModal = true;
-    this.posX = 'left:' + (event.clientX +1000).toString() + 'px';
-    this.posY = 'top:' + (event.clientY).toString() + 'px';
+  private getCellTemplate(cellName: string){
+      return this.customCells.find(cell=>cell.appCustomCell===cellName)?.tmpRef
   }
-  
-  getValue(row: any, prop: any){
-    return prop.split('.').reduce((acc: any, item: any)=>{
-      return acc[item]
-    },row)
+  private getHeaderTemplate(headerName: string){
+    return this.customCells.find(cell=> cell.appCustomCell === headerName)?.tmpRef
+  }
+  private getDefaultCellTemplate(cellName: string){
+    return this.customDefaultCells.find(item=>item.appCustomCell===cellName)?.tmpRef
+  }
+  private getDefaultHeaderTemplate(headerName: string){
+    return this.customDefaultCells.find(cell=>cell.appCustomCell===headerName)?.tmpRef
+  }
+  public getValue(row: T, prop: unknown): unknown {
+    if (!(prop as string).includes('.')) {
+      return row[prop as keyof T];
+    }
+    // @ts-ignore
+    return (prop as string).split('.').reduce<unknown>((value, key) => value[key], row);
   }
 }

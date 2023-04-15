@@ -25,7 +25,8 @@ import { AdminToolsComponent } from './admin-tools/admin-tools.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import { TableComponent } from './table/table.component';
 import { ConfigService } from './config.service';
-import { ModalViewComponent } from './modal-view/modal-view.component';
+import { CustomCellDirective } from './custom-cell.directive';
+
 
 const INTERCEPTOR_PROVIDER = {
   provide: HTTP_INTERCEPTORS,
@@ -53,7 +54,7 @@ export function loadConfig(config: ConfigService){return () => config.load()};
     AdminToolsComponent,
     CustomInputComponent,
     TableComponent,
-    ModalViewComponent
+    CustomCellDirective,
   ],
   imports: [
     BrowserModule,

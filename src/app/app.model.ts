@@ -22,15 +22,19 @@ export interface ItemError {
   name: string
 }
 export interface ColumnConfig<T> {
+  cellTemplate?: string;
+  headerTemplate?: string;
   prop: keyof T | string
   name?: string
   width?: string
+  icon?: string
 }
 
 export interface Car {
   id: number
   user?: User
-  model: string
+  logo?: string
+  model: {name: string, link: string}
   age: number
   tank: number
   bodyType: string

@@ -6,5 +6,13 @@
         </ng-container>
         <button type="button" class="btn btn-success mt-3" (click)="fetch()">FETCH</button>
     </div>
-    <app-table [columns]="columns" [data]="data"></app-table>
+    <app-table [columns]="columns" [data]="data">
+            <div *appCustomCell="'logo'; let value = value">
+                <img [src]="value">
+            </div>
+            <div *appCustomCell="'model'; let value = value, let car = row">
+                <a [href]="value.link" target="_blank">{{value.name}}</a>
+            </div>
+    </app-table>
 </div>
+

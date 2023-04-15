@@ -1,14 +1,31 @@
 <h5 class="text-center">Table of Orders</h5>
-<app-modal-view [posX]="posX" [posY]="posY" *ngIf="showModal"></app-modal-view>
 <table class="table text-center table-striped">
     <thead class="thead-dark">
         <tr>
-            <th *ngFor="let column of columns" [style.width]="column.width" scope="row">{{column.name}}</th>
+            <th *ngFor="let column of columnsDataModified">
+                <ng-template [ngTemplateOutlet]="column.headerTemplateRef" [ngTemplateOutletContext]="{column:column}">
+                </ng-template>
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of data" >
-            <td *ngFor="let item of columns">{{item.prop ? getValue(row, item.prop) : null}}</td>
-        <tr>
+        <tr *ngFor="let car of data">
+            <td *ngFor="let column of columnsDataModified">
+                <ng-template [ngTemplateOutlet]="column.cellTemplateRef" [ngTemplateOutletContext]="{value: column.prop ? getValue(car, column.prop) : null, row:car}">
+                </ng-template>
+            </td>
+        </tr>
     </tbody>
 </table>
+<div *appCustomCell="customHeaderCells.simple; let column = column" [style.width]="column.width">
+    {{column.name}}
+</div>
+<div *appCustomCell="customRowCells.simple; let value = value, let car = row">
+    {{value}}
+</div>
+<div *appCustomCell="'defaultHeader'; let column = column" [style.width]="column.width">
+    {{column.name}}
+</div>
+<div *appCustomCell="'defaultCell'; let value = value, let car = row">
+    {{value}}
+</div>
