@@ -16,3 +16,13 @@ a {
     color: darkgreen;
     text-decoration: none;
 }
+.pagination span{
+    cursor: pointer;
+    margin-left: 15px;
+}
+.check{
+    font-weight: 600;
+}
+.uncheck{
+    font-weight: 100;
+}

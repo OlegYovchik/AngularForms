@@ -9,6 +9,7 @@ import {
 import {ColumnConfig} from '../app.model';
 import {CustomCell, CustomCellDirective} from "../custom-cell.directive";
 import {CustomHeader, CustomRow} from "../table-model";
+import { ApiList } from "../admin-tools/apiList";
 
 @Component({
   selector: 'app-table',
@@ -18,6 +19,10 @@ import {CustomHeader, CustomRow} from "../table-model";
 export class TableComponent <T> implements AfterViewInit{
   @Input() public columns?: ColumnConfig<T>[];
   @Input() public data: T[] | undefined;
+
+  //TODO new interface for communicate with table
+  @Input() public dataAdapter?: ApiList<T>
+
   @ViewChildren(CustomCellDirective,{read: CustomCell})
     public customDefaultCells: QueryList<CustomCell> = new QueryList();
   @ContentChildren(CustomCellDirective,{read: CustomCell})

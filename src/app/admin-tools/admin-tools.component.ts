@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Car, ColumnConfig} from '../app.model';
-
+import {AdminToolsApiService} from "./admin-tools-api.service";
 
 @Component({
   selector: 'app-admin-tools',
   templateUrl: './admin-tools.component.html',
   styleUrls: ['./admin-tools.component.css']
 })
-export class AdminToolsComponent {
+export class AdminToolsComponent implements OnInit{
 
   public toolsArray = ['car','user','body'];
   public form: FormGroup;
+  public arrPages:number[] = [];
+  public pageCars = 0;
   public columns: ColumnConfig<Car>[] = [
     {prop: 'logo', name: 'Logo', width: '50px', cellTemplate: 'logo'},
     {prop: 'model', name: 'Model', width: '155px', cellTemplate: 'model'},
@@ -21,31 +23,35 @@ export class AdminToolsComponent {
     {prop: 'user.first_name', name: 'User', width: '100px'},
     {prop: 'user.email', name: 'Email', width: '100px'}
   ];
-  public data: Car[] = [
-    {id: 123 ,model: {name: "Opel", link: 'https://ru.wikipedia.org/wiki/opel'}, logo:'../assets/img/opel.icon.png', age: 10, tank: 50, bodyType: "sedan", user: {id: '125', last_name: 'Michal', first_name: 'Jorge', email: 'hsgd@gmail.com'}},
-    {id: 124, model: {name: "VW", link: 'https://ru.wikipedia.org/wiki/volkswagen'}, logo:'../assets/img/vw.icon.png', age: 5, tank: 45, bodyType: "hetchback", user: {id: '125', last_name: 'Michal', first_name: 'Steve', email: 'hsgd@gmail.com'}},
-    {id: 125, model: {name: "Volvo", link: 'https://ru.wikipedia.org/wiki/volvo'}, logo:'../assets/img/volvo.icon.png', age: 3, tank: 55, bodyType: "suv", user: {id: '125', last_name: 'Michal', first_name: 'Margo', email: 'hsgd@gmail.com'}},
-    {id: 126, model: {name: "Audi", link: 'https://ru.wikipedia.org/wiki/Audi'}, logo:'../assets/img/audi.icon.png', age: 2, tank: 55, bodyType: "liftback", user: {id: '125', last_name: 'Michal', first_name: 'Sophie', email: 'hsgd@gmail.com'}},
-    {id: 127, model: {name: "Mazda", link: 'https://ru.wikipedia.org/wiki/Mazda'}, logo:'../assets/img/mazda.icon.png', age: 7, tank: 42, bodyType: "suv", user: {id: '125', last_name: 'Michal', first_name: 'Bruce', email: 'hsgd@gmail.com'}}
-  ];
-
-  constructor(private fb: FormBuilder){
+  public data: Car[] = [];
+  constructor(private fb: FormBuilder, private adminToolsService: AdminToolsApiService){
     this.form = this.fb.group({
       car: [""],
       user: [""],
       body: [""]
     })
   }
-
   fetch(){
     if(this.form.value.car){
-      
     }
   }
-  getOption(car: any, prop: any){
-    return prop.split('.').reduce((acc:any,id:any)=>{
-      return acc[id]
-    },car)
+  ngOnInit() {
+    this.fetchCurentCars(this.pageCars,5);
   }
-
+  public fetchCurentCars(pageNumber: number, pageSize: number){
+    this.adminToolsService.get(pageNumber,pageSize).subscribe(res=>{
+      this.data = res.items;
+      this.pageCars = res.pageNumber;
+      if(!this.arrPages.length){
+        let countPage = Math.ceil(res.totalCount/res.pageSize);
+        for(let i = 0; i < countPage; i++){
+          this.arrPages.push(i)
+        }
+      }
+    })
+  }
+  public changePage(page: number){
+    this.pageCars = page;
+    this.fetchCurentCars(this.pageCars,5);
+  }
 }

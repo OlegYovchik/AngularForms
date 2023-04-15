@@ -14,5 +14,10 @@
                 <a [href]="value.link" target="_blank">{{value.name}}</a>
             </div>
     </app-table>
+    <div class="d-flex justify-content-between pagination">
+        <span *ngFor="let page of arrPages"
+              (click)="changePage(page)"
+              [ngClass]="page===pageCars ? 'check': 'uncheck'">{{page}}</span>
+    </div>
 </div>
 
