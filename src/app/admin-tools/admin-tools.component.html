@@ -1,12 +1,14 @@
-<div [formGroup]="form" (ngSubmit)="fetch()" class="form-group d-flex flex-column justify-content-center">
-    <div class="controls card flex-column col-6 p-2">
-        <p class="text-center">CREATE ITEM FOR ORDERS</p>
-        <ng-container *ngFor="let item of toolsArray">
-            <custom-input [inputName]="item" [formControlName]="item"></custom-input>
-        </ng-container>
-        <button type="button" class="btn btn-success mt-3" (click)="fetch()">FETCH</button>
-    </div>
-    <app-table [columns]="columns" [data]="data">
+<div class="main d-flex flex-column justify-content-center align-items-center">
+<!--    <div [formGroup]="form" class="form-group">-->
+<!--        <div class="controls card flex-column col-6 p-2">-->
+<!--            <p class="text-center">CREATE ITEM FOR ORDERS</p>-->
+<!--            <ng-container *ngFor="let item of toolsArray">-->
+<!--                <custom-input [inputName]="item" [formControlName]="item"></custom-input>-->
+<!--            </ng-container>-->
+<!--            <button type="button" class="btn btn-success mt-2">FETCH</button>-->
+<!--        </div>-->
+<!--    </div>-->
+    <app-table [columns]="columns" [dataAdapter]="apiList">
             <div *appCustomCell="'logo'; let value = value">
                 <img [src]="value">
             </div>
@@ -14,10 +16,12 @@
                 <a [href]="value.link" target="_blank">{{value.name}}</a>
             </div>
     </app-table>
-    <div class="d-flex justify-content-between pagination">
-        <span *ngFor="let page of arrPages"
-              (click)="changePage(page)"
-              [ngClass]="page===pageCars ? 'check': 'uncheck'">{{page}}</span>
+    <div [formGroup]="formFilter" class="filter-cars d-flex flex-column col-6 mt-1 p-2 align-items-center">
+        <label for="searchForUser">Search for user</label>
+        <input type="text" id="searchForUser" class="form-control" formControlName="searchCar">
+        <app-checkbox-group [options]="bodiesOfCar" formControlName="typeOfCar"></app-checkbox-group>
     </div>
 </div>
+
+
 

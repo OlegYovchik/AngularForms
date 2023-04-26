@@ -1,4 +1,3 @@
-<h5 class="text-center">Table of Orders</h5>
 <table class="table text-center table-striped">
     <thead class="thead-dark">
         <tr>
@@ -11,12 +10,14 @@
     <tbody>
         <tr *ngFor="let car of data">
             <td *ngFor="let column of columnsDataModified">
-                <ng-template [ngTemplateOutlet]="column.cellTemplateRef" [ngTemplateOutletContext]="{value: column.prop ? getValue(car, column.prop) : null, row:car}">
+                <ng-template [ngTemplateOutlet]="column.cellTemplateRef" [ngTemplateOutletContext]="{value: column.prop ? getValue(car, column.prop): null, row:car}">
                 </ng-template>
             </td>
         </tr>
     </tbody>
 </table>
+<app-pagination [dataAdapter]="dataAdapter"></app-pagination>
+<ng-content select=".pagination"></ng-content>
 <div *appCustomCell="customHeaderCells.simple; let column = column" [style.width]="column.width">
     {{column.name}}
 </div>

@@ -12,7 +12,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
   }]
 })
 export class CheckboxGroupComponent implements ControlValueAccessor{
-  @Input() optionsCar: string[] | undefined;
+  @Input() options: string[] | undefined;
   public valueOptions: string [] = [];
   public checked: string [] = [];
   private onChange!: ((value: string [])=>void);
@@ -27,8 +27,10 @@ export class CheckboxGroupComponent implements ControlValueAccessor{
     }
     if(this.valueOptions) this.onChange(this.valueOptions);
   }
-  writeValue(value: string){
-    this.valueOptions = this.valueOptions.concat(value);
+  writeValue(value: string [] | null){
+    if(value===null){this.valueOptions = []}else{
+      this.valueOptions = value;
+    }
   }
   registerOnChange(fn: any){
     this.onChange = fn;
@@ -37,7 +39,4 @@ export class CheckboxGroupComponent implements ControlValueAccessor{
     this.onTouched = fn;
   };
   setDisabledState?(isDisabled: boolean): void;
-
-
-
 }

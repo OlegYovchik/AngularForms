@@ -39,3 +39,7 @@ export interface Car {
   tank: number
   bodyType: string
 }
+export interface FilterCars {
+  searchCar: string
+  typeBody: string[]
+}

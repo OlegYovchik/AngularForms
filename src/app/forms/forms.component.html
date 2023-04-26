@@ -12,7 +12,7 @@
             <app-multi-select [options]="users" formControlName="userMulti" placeholder="User">
             </app-multi-select>
             <div class="options p-2 d-flex justify-content-center">
-                <app-checkbox-group [optionsCar]="optionsCar" formControlName="checkCar"></app-checkbox-group>
+                <app-checkbox-group [options]="optionsCar" formControlName="checkCar"></app-checkbox-group>
             </div>
             <button type="button" class="btn btn-success" (click)="fetchData()">Fetch Data</button>
             <app-select-by formControlName = "newVersion" [placeholder]="'Type body'">

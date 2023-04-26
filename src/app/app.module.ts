@@ -26,6 +26,8 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
 import { TableComponent } from './table/table.component';
 import { ConfigService } from './config.service';
 import { CustomCellDirective } from './custom-cell.directive';
+import { PaginationComponent } from './pagination/pagination.component';
+
 
 
 const INTERCEPTOR_PROVIDER = {
@@ -55,6 +57,7 @@ export function loadConfig(config: ConfigService){return () => config.load()};
     CustomInputComponent,
     TableComponent,
     CustomCellDirective,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

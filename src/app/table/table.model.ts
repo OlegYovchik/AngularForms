@@ -1,6 +1,6 @@
 export  interface ApiResponse<T> {
     pageNumber:number,
     pageSize:number,
-    totalCount:number,
+    arrPages:number[],
     items:T[]
 }

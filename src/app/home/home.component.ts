@@ -125,29 +125,39 @@ export class HomeComponent implements OnInit{
       // let obj1 = [...obj];
       // console.log(obj===obj1)
       //@ts-ignore
-      function rotate(str){
-        let newStr = str;
-        let str1 = '';
-        let str2 = '';
-        let arr = [];
-        for(let i = 0; i < newStr.length; i++){
-          str1 = newStr.slice(i+1, newStr.length);
-          str2 = newStr.slice(0,i+1);
-          arr.push(str1+str2);
-        }
-        console.log(arr);
-      }rotate("Hello");
+      // function rotate(str){
+      //   let newStr = str;
+      //   let str1 = '';
+      //   let str2 = '';
+      //   let arr = [];
+      //   for(let i = 0; i < newStr.length; i++){
+      //     str1 = newStr.slice(i+1, newStr.length);
+      //     str2 = newStr.slice(0,i+1);
+      //     arr.push(str1+str2);
+      //   }
+      //   console.log(arr);
+      // }rotate("Hello");
       //===========================================================
-      function compareNumbers(a:number, b:number) {
-        return a - b;
+      //   function compareNumbers(a:number, b:number) {
+      //     return a - b;
+      //   }
+      //
+      //   function sortByLength (array:string []) {
+      //       let numStr:number [] = [];
+      //       array.forEach(item=> numStr.push(item.length));
+      //       console.log(numStr)
+      //   }
+      //   sortByLength(['buenossss','hell','hello','privet']);
+      // }
+      //=================================================
+      function findUniq(arr) {
+        let uniqNum = 0;
+        for(let i = 0; i < arr.length; i++){
+          if(arr[i]===arr[i+1]){continue;}else{uniqNum = arr[i+1]}
+          return uniqNum;
+        }
       }
-
-      function sortByLength (array:string []) {
-          let numStr:number [] = [];
-          array.forEach(item=> numStr.push(item.length));
-          console.log(numStr)
-      }
-      sortByLength(['buenossss','hell','hello','privet']);
+      console.log(findUniq([0,0,1,0,0]));
     }
   }
 }
