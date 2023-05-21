@@ -3,6 +3,7 @@
         <a routerLink="/home" routerLinkActive="active">HOME</a>
         <a routerLink="/form" routerLinkActive="active" *ngIf="!(authService.isAuthorized$ | async)">ORDER</a>
         <a routerLink="/contacts" routerLinkActive="active">CONTACTS</a>
+        <a routerLink="/battleship" routerLinkActive="active">BATTLESHIP</a>
         <a routerLink="/adminTools" routerLinkActive="active" *ngIf="authService.isAuthorized$ | async">ADMINTOOLS</a>
         <a routerLink="/auth" routerLinkActive="active" *ngIf="!(authService.isAuthorized$ | async); else logout">LOGIN</a>
         <ng-template #logout>

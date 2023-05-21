@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let car of data">
+        <tr *ngFor="let car of data; trackBy:trackBy">
             <td *ngFor="let column of columnsDataModified">
                 <ng-template [ngTemplateOutlet]="column.cellTemplateRef" [ngTemplateOutletContext]="{value: column.prop ? getValue(car, column.prop): null, row:car}">
                 </ng-template>
@@ -16,8 +16,12 @@
         </tr>
     </tbody>
 </table>
-<app-pagination [dataAdapter]="dataAdapter"></app-pagination>
-<ng-content select=".pagination"></ng-content>
+<app-pagination
+        (configChanged)="changePagination($event)"
+        [currentPage]="page"
+        [itemCount]="totalCount"
+        [pageSize]="pageSize"
+></app-pagination>
 <div *appCustomCell="customHeaderCells.simple; let column = column" [style.width]="column.width">
     {{column.name}}
 </div>

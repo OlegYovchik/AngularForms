@@ -6,11 +6,11 @@ import {
   QueryList,
   ViewChildren
 } from '@angular/core';
-import {Car, CarType, ColumnConfig, FilterCars} from '../app.model';
+import {ColumnConfig} from '../app.model';
 import {CustomCell, CustomCellDirective} from "../custom-cell.directive";
 import {CustomHeader, CustomRow} from "../table-model";
-import {AdminToolsApiService} from "../admin-tools/admin-tools-api.service";
-import {Api, ApiList} from "../admin-tools/ApiList";
+import {ApiList} from "../admin-tools/ApiList";
+
 
 @Component({
   selector: 'app-table',
@@ -33,13 +33,16 @@ export class TableComponent <T> implements AfterViewInit, OnInit{
   public columnsDataModified?: any[];
   public customHeaderCells = CustomHeader;
   public customRowCells = CustomRow;
+  public page = 0;
+  public totalCount = 0;
+  public pageSize = 5;
 
-
-  constructor(private adminToolsService: AdminToolsApiService) {}
   ngOnInit(){
-    this.dataAdapter?.changes().subscribe(res=> {
-      this.data = res.items;
-      console.log(this.data)
+    this.dataAdapter?.changes().subscribe(({items,pageNumber,totalCount, pageSize}) => {
+      this.pageSize = pageSize;
+      this.data = items;
+      this.page = pageNumber;
+      this.totalCount = totalCount;
     })
   }
   ngAfterViewInit(){
@@ -68,5 +71,8 @@ export class TableComponent <T> implements AfterViewInit, OnInit{
     //@ts-ignore
     return (prop as string).split('.').reduce<unknown>((value, key) => value[key], row);
   }
-
+  changePagination(event: any){
+    this.dataAdapter?.navigateTo(event,5)
+  }
+  trackBy(_:number, entity:any):void{return entity.id}
 }

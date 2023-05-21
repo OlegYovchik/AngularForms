@@ -1,20 +1,15 @@
 <div class="main d-flex flex-column justify-content-center align-items-center">
-<!--    <div [formGroup]="form" class="form-group">-->
-<!--        <div class="controls card flex-column col-6 p-2">-->
-<!--            <p class="text-center">CREATE ITEM FOR ORDERS</p>-->
-<!--            <ng-container *ngFor="let item of toolsArray">-->
-<!--                <custom-input [inputName]="item" [formControlName]="item"></custom-input>-->
-<!--            </ng-container>-->
-<!--            <button type="button" class="btn btn-success mt-2">FETCH</button>-->
-<!--        </div>-->
-<!--    </div>-->
-    <app-table [columns]="columns" [dataAdapter]="apiList">
-            <div *appCustomCell="'logo'; let value = value">
-                <img [src]="value">
-            </div>
-            <div *appCustomCell="'model'; let value = value, let car = row">
-                <a [href]="value.link" target="_blank">{{value.name}}</a>
-            </div>
+    <div highLight [searchText]="searchText">Steve</div>
+    <app-table [columns]="columns" [dataAdapter]="apiList" >
+        <div *appCustomCell="'logo'; let value = value">
+            <img [src]="value">
+        </div>
+        <div *appCustomCell="'model'; let value = value" >
+            <a [href]="value.link" target="_blank">{{value.name}}</a>
+        </div>
+        <div *appCustomCell="'userName'; let value = value" highLight [searchText]="searchText">
+            {{value}}
+        </div>
     </app-table>
     <div [formGroup]="formFilter" class="filter-cars d-flex flex-column col-6 mt-1 p-2 align-items-center">
         <label for="searchForUser">Search for user</label>

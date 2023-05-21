@@ -150,14 +150,26 @@ export class HomeComponent implements OnInit{
       //   sortByLength(['buenossss','hell','hello','privet']);
       // }
       //=================================================
-      function findUniq(arr) {
-        let uniqNum = 0;
-        for(let i = 0; i < arr.length; i++){
-          if(arr[i]===arr[i+1]){continue;}else{uniqNum = arr[i+1]}
-          return uniqNum;
+    //   function findUniq(arr) {
+    //     let uniqNum = 0;
+    //     for(let i = 0; i < arr.length; i++){
+    //       if(arr[i]===arr[i+1]){continue;}else{uniqNum = arr[i+1]}
+    //       return uniqNum;
+    //     }
+    //   }
+    //   console.log(findUniq([0,0,1,0,0]));
+      function addNumber(arr: number[]){
+        let newArr = [];
+        let multiArr = [];
+        for(let i = 0;i<arr.length-1;i+2){
+          newArr.push(arr[i]+arr[i+1]);
         }
+        for(let i = 0; i < newArr.length-1; i+2){
+          multiArr.push(newArr[i]*newArr[i+1]);
+        }
+        return multiArr;
       }
-      console.log(findUniq([0,0,1,0,0]));
-    }
+      //console.log(addNumber([1,2,3,4,5,6,7,8]));
+     }
   }
 }

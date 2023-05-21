@@ -7,6 +7,7 @@ import {ContactsComponent} from "./contacts/contacts.component";
 import {AuthComponent} from "./auth/auth.component";
 import { AuthGuard } from './auth.guard';
 import { AdminToolsComponent } from './admin-tools/admin-tools.component';
+import {BattleshipComponent} from "./battleship/battleship.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'form', component: FormsComponent},
   { path: 'contacts', component: ContactsComponent},
   { path: 'auth', component: AuthComponent},
+  { path: 'battleship', component: BattleshipComponent},
   { path: 'adminTools', component: AdminToolsComponent, canActivate:[AuthGuard]}
 ]
 

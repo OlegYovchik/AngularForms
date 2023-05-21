@@ -11,16 +11,14 @@ import {Api, DataRequest} from "./ApiList";
 })
 export class AdminToolsApiService implements Api<Car>{
     public get(dataRequest: DataRequest):Observable<ApiResponse<Car>>{
-        const {pageNumber, pageSize, filters} = dataRequest;
+        const {pageNumber, pageSize , filters} = dataRequest;
         const filteredCar = this.filterCars(cars,filters);
-        console.log(filteredCar)
-        console.log(this.createArrayPages(filteredCar.length));
         return of(
         {
             pageNumber,
             pageSize,
             items: filteredCar.slice((pageNumber-1) * pageSize,  (pageNumber)* pageSize),
-            arrPages: this.createArrayPages(filteredCar.length)
+            totalCount: filteredCar.length
             }
         )
     }

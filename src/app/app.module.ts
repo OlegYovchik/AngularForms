@@ -27,6 +27,8 @@ import { TableComponent } from './table/table.component';
 import { ConfigService } from './config.service';
 import { CustomCellDirective } from './custom-cell.directive';
 import { PaginationComponent } from './pagination/pagination.component';
+import { HighLightDirective } from './table/high-light.directive';
+import { BattleshipComponent } from './battleship/battleship.component';
 
 
 
@@ -57,7 +59,9 @@ export function loadConfig(config: ConfigService){return () => config.load()};
     CustomInputComponent,
     TableComponent,
     CustomCellDirective,
-    PaginationComponent
+    PaginationComponent,
+    HighLightDirective,
+    BattleshipComponent
   ],
   imports: [
     BrowserModule,
