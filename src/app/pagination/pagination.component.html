@@ -1,0 +1,7 @@
+<div class="d-flex justify-content-center pagination">
+    <span *ngFor="let page of arrPages"
+          (click)="changePage(page)"
+          [ngClass]="page===currentPage ? 'check': 'uncheck'">
+        {{page}}
+    </span>
+</div>

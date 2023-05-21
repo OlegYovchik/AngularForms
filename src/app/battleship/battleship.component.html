@@ -1,0 +1,10 @@
+<div class="main d-flex align-items-center">
+    <div class="battlefield d-grid col-7 offset-3">
+        <div class="row">
+            <div class="title col p-0" *ngFor="let col of ['R','E','S','P','U','B','L','I','K','A']">{{col}}</div>
+        </div>
+        <div class="row" *ngFor="let row of [1,2,3,4,5,6,7,8,9,10]; let id = index">
+            <div class="cage col" *ngFor="let col of [1,2,3,4,5,6,7,8,9,10]; let idx = index" (click)="info(col, row, $event)"></div>
+        </div>
+    </div>
+</div>
